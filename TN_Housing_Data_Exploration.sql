@@ -1,4 +1,3 @@
-```sql
 /*
 ------------------------------------------------------------
 STEP 1: Create a new column to store the cleaned sale date.
