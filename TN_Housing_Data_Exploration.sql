@@ -68,12 +68,3 @@ SELECT SaleDate,
 FROM nashville_housing
 LIMIT 10;
 ```
-
-### What this code accomplishes
-
-1. **Adds a new column** to store standardized dates.
-2. **Disables safe update mode** so the entire table can be updated.
-3. **Converts text dates into SQL DATE format** using `STR_TO_DATE`.
-4. **Verifies the results** by displaying both columns.
-
----
