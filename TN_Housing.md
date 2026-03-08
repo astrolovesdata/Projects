@@ -1,7 +1,3 @@
-Below is a **clean explanation suitable for your project documentation** and also useful if someone asks about it in an interview.
-
----
-
 # Converting `SaleDate` to a Standard SQL Date
 
 The original `SaleDate` column contained dates stored as **text strings** such as:
@@ -84,6 +80,3 @@ YYYY-MM-DD
 
 which allows for easier **time-based analysis, filtering, and aggregation** in later queries.
 
----
-
-If you'd like, I can also give you a **shorter version optimized for GitHub READMEs and resumes**, which is what many data analysts use in portfolio projects.
