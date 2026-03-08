@@ -145,16 +145,3 @@ Create a time-series dataset showing infection growth over time.
 Add your screenshot like this:
 
 ![COVID Dashboard](images/tableau_dashboard_preview.png)
-
----
-
-# Key Takeaways
-
-This dashboard demonstrates the ability to:
-
-* Prepare **SQL queries specifically for visualization**
-* Transform raw data into **dashboard-ready datasets**
-* Build clear **analytical visualizations in Tableau**
-* Communicate global trends using interactive charts
-
-If you want, I can also help you create a **really strong main README for the entire project** (SQL exploration + Tableau dashboard + screenshots + recruiter-friendly explanation). That version is the one that really helps in **data analyst job interviews**.
