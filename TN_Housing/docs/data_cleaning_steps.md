@@ -1,58 +1,43 @@
-# Converting `SaleDate` to a Standard SQL Date
+# Nashville Housing Data Cleaning Process
 
-The original `SaleDate` column contained dates stored as **text strings** such as:
+This document explains the **data cleaning steps performed on the Nashville Housing dataset** using SQL.
+
+The objective of the cleaning process was to transform the raw dataset into a **structured and analysis-ready format** by addressing issues such as inconsistent data types, missing values, combined fields, and duplicate records.
+
+The full SQL implementation of these steps can be found in:
+
+```
+sql/nashville_housing_data_cleaning.sql
+```
+
+---
+
+# Dataset
+
+The original dataset used for this project is included in the repository:
+
+```
+data/nashville_housing_raw.csv
+```
+
+This file represents the **raw data prior to any cleaning transformations**.
+
+---
+
+# Data Cleaning Steps
+
+## 1. Convert Text-Based Sale Date to SQL Date Format
+
+The `SaleDate` column contained dates stored as **text strings**, such as:
 
 ```
 April 9, 2013
 June 10, 2014
 ```
 
-Text-formatted dates are not ideal for analysis because they cannot be reliably used for **sorting, filtering, or time-based calculations**.
-To standardize the data while preserving the original values, a new column was created to store the converted date.
+Text-based dates make filtering and time-based analysis difficult.
 
----
-
-## Step 1 — Add a new column for the cleaned date
-
-```sql
-ALTER TABLE nashville_housing
-ADD SaleDateConverted DATE;
-```
-
-This statement modifies the table structure by adding a new column called `SaleDateConverted` with the `DATE` data type.
-
-Creating a new column instead of modifying the original one helps **preserve the raw data**, which is considered good data-cleaning practice.
-
----
-
-## Step 2 — Disable Safe Update Mode
-
-```sql
-SET SQL_SAFE_UPDATES = 0;
-```
-
-MySQL Workbench often enables **Safe Update Mode**, which prevents updates to an entire table without a `WHERE` clause.
-
-Because the goal is to update **all rows in the dataset**, safe update mode was temporarily disabled to allow the transformation.
-
----
-
-## Step 3 — Convert the text date into a SQL date
-
-```sql
-UPDATE nashville_housing
-SET SaleDateConverted = STR_TO_DATE(SaleDate, '%M %e, %Y');
-```
-
-The `STR_TO_DATE()` function converts a text string into a proper SQL date.
-
-The format specification tells MySQL how to interpret the text format:
-
-| Format | Meaning          | Example |
-| ------ | ---------------- | ------- |
-| `%M`   | Full month name  | April   |
-| `%e`   | Day of the month | 9       |
-| `%Y`   | Four-digit year  | 2013    |
+To standardize the data while preserving the original values, a new column called `SaleDateConverted` was created with the `DATE` data type.
 
 Example conversion:
 
@@ -62,21 +47,137 @@ April 9, 2013 → 2013-04-09
 
 ---
 
-## Step 4 — Verify the conversion
+## 2. Populate Missing Property Addresses
 
-```sql
-SELECT SaleDate, SaleDateConverted
-FROM nashville_housing
-LIMIT 10;
+Some rows contained **missing property addresses**.
+
+Because the same property can appear multiple times in the dataset, the table was **joined to itself using ParcelID** to retrieve the address from another record belonging to the same property.
+
+This allowed missing addresses to be filled without external data sources.
+
+---
+
+## 3. Split Property Address into Separate Columns
+
+The `PropertyAddress` column originally contained both the **street address and city** in a single field:
+
+```
+1129 CAMPBELL RD, GOODLETTSVILLE
 ```
 
-This query displays both the original and converted date columns to confirm the transformation was successful.
+To improve data structure, this field was split into two columns:
 
-The resulting `SaleDateConverted` column now stores dates in the standard SQL format:
+* `PropertySplitAddress`
+* `PropertySplitCity`
+
+This allows the city to be used independently for filtering and analysis.
+
+---
+
+## 4. Split Owner Address into Address, City, and State
+
+The `OwnerAddress` column contained three components stored in a single field:
 
 ```
-YYYY-MM-DD
+Street Address, City, State
 ```
 
-which allows for easier **time-based analysis, filtering, and aggregation** in later queries.
+Example:
+
+```
+1808 FOX CHASE DR, GOODLETTSVILLE, TN
+```
+
+This column was separated into three new fields:
+
+* `OwnerSplitAddress`
+* `OwnerSplitCity`
+* `OwnerSplitState`
+
+Separating these values improves data usability and enables geographic analysis.
+
+---
+
+## 5. Standardize `SoldAsVacant` Values
+
+The `SoldAsVacant` column contained inconsistent categorical values:
+
+```
+Y
+Yes
+N
+No
+```
+
+These were standardized so that all values follow a consistent format:
+
+```
+Yes
+No
+```
+
+This ensures accurate grouping and aggregation in analysis.
+
+---
+
+## 6. Identify and Remove Duplicate Records
+
+Duplicate records were identified using the following fields:
+
+* `ParcelID`
+* `PropertyAddress`
+* `SalePrice`
+* `SaleDate`
+* `LegalReference`
+
+Window functions were used to detect duplicate rows:
+
+* `ROW_NUMBER()` to identify duplicates within groups
+* `COUNT()` to verify duplicate groups
+
+Duplicate rows were then removed while keeping the original record.
+
+---
+
+# Result
+
+After cleaning, the dataset:
+
+* Contains standardized date formats
+* Has consistent categorical values
+* Stores addresses in structured columns
+* Contains no duplicate records
+* Is ready for further analysis or visualization
+
+---
+
+# Skills Demonstrated
+
+This project demonstrates the use of SQL for data preparation, including:
+
+* Data type conversion
+* Handling missing values
+* String manipulation
+* Self joins
+* Window functions
+* Duplicate detection and removal
+* Data standardization
+
+---
+
+# Project Workflow
+
+The overall workflow of the project was:
+
+```
+Raw Dataset
+     ↓
+SQL Data Exploration
+     ↓
+Data Cleaning & Transformation
+     ↓
+Analysis-Ready Dataset
+```
+
+---
 
