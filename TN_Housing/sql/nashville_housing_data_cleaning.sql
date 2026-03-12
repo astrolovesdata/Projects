@@ -1,4 +1,24 @@
 /* ============================================================
+PROJECT: Nashville Housing Data Cleaning
+AUTHOR: Alfonso Gutierrez
+DESCRIPTION:
+This SQL script cleans and standardizes the Nashville Housing
+dataset. The cleaning process includes:
+
+• Converting text-based dates into SQL DATE format
+• Populating missing property addresses
+• Splitting address fields into structured columns
+• Standardizing categorical values
+• Identifying and removing duplicate records
+
+DATASET:
+Nashville Housing Data for Data Cleaning.csv
+
+TABLE USED:
+nashville_housing
+============================================================ */
+
+/* ============================================================
 STEP: Inspect Data for Duplicate ParcelIDs
 ============================================================
 
