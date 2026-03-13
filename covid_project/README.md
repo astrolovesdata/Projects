@@ -212,18 +212,6 @@ covid_project
     └── tableau_dashboard.png
 ```
 
----
-
-## Future Improvements
-
-Potential extensions to the project include:
-
-* vaccination rate comparisons across continents
-* correlation analysis between vaccination rates and death rates
-* time-series forecasting of infection trends
-* integration with additional public health datasets
-
----
 
 ## Author
 
