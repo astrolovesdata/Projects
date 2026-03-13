@@ -1,7 +1,7 @@
 /* ============================================================
 Project: COVID-19 Global Data Analysis
 Author: Alfonso G.
-Tools: MySQL, Power BI
+Tools: MySQL, Tableau Public
 Dataset Source: Our World in Data
 
 Description:
@@ -17,7 +17,6 @@ Sections:
 5. Global Time Series Trends
 6. Vaccination Progress Tracking
 ============================================================ */
-
 
 /* ============================================================
 SECTION 1: Case Fatality Analysis
@@ -104,9 +103,19 @@ GROUP BY cd.location
 ORDER BY total_deaths DESC;
 
 /* ============================================================
-SECTION 5: Death Totals by Continent (Country Aggregation)
+SECTION 5: Highest Country Death Count per Continent
 Purpose:
-Aggregate death totals from country-level rows by continent.
+Identify the country within each continent that recorded the
+highest total number of COVID-19 deaths.
+
+Explanation:
+The query groups data by continent and retrieves the maximum
+value of total_deaths among all countries in that continent.
+
+Because total_deaths is a cumulative metric that increases
+over time, the MAX() function effectively captures the
+highest reported death count for a country within each
+continent during the dataset period.
 ============================================================ */
 
 SELECT
@@ -137,70 +146,29 @@ FROM portfolioproject.covid_deaths cd
 WHERE cd.continent IS NOT NULL
 GROUP BY cd.date
 ORDER BY cd.date;
-
-/* ============================================================
-SECTION 7: Vaccination Progress Tracking
-Purpose:
-Track cumulative vaccinations by country over time.
-
-Technique:
-Window function running total.
-
-Explanation:
-- PARTITION BY resets totals for each country.
-- ORDER BY ensures chronological accumulation.
-- COALESCE replaces NULL values with zero.
-============================================================ */
-
-SELECT
-    cd.continent,
-    cd.location,
-    cd.date,
-    cd.population,
-    cv.new_vaccinations,
-    SUM(
-        COALESCE(cv.new_vaccinations,0)
-    ) OVER (
-        PARTITION BY cd.location
-        ORDER BY cd.date
-        ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-    ) AS rolling_people_vaccinated
-FROM portfolioproject.covid_deaths cd
-JOIN portfolioproject.covid_vaccines cv
-    ON cd.location = cv.location
-    AND cd.date = cv.date
-WHERE cd.continent IS NOT NULL
-ORDER BY
-    cd.location,
-    cd.date;
     
--- non formatted code begins here
--- Using WITH to apply CTE (common table expression)
--- Think of a CTE as a temporary named result set that exists only for the duration of the query. 
--- It works like a temporary virtual table that you can reference later in the same query.
 
--- sql
 /* ============================================================
-SECTION: Vaccination Progress vs Population
+SECTION 7: Vaccination Progress vs Population
 Purpose:
 Track vaccination rollout progress by calculating a cumulative
 (running total) number of vaccinations administered for each
-country over time.
+country over time and measuring vaccination coverage relative
+to population size.
 
 Technique:
 Common Table Expression (CTE) + Window Function
 
 Explanation:
-- The CTE (PopvsVac) creates a temporary result set containing
-  vaccination data joined with country population data.
+- The CTE (PopvsVac) creates a temporary result set combining
+  vaccination data with population data.
 - SUM() OVER() calculates a running total of vaccinations.
-- PARTITION BY location ensures the running total resets for
-  each country.
+- PARTITION BY location resets the running total for each country.
 - ORDER BY date ensures vaccinations accumulate chronologically.
 - COALESCE converts NULL vaccination values to zero to prevent
   calculation errors.
 - The final query calculates the percentage of the population
-  vaccinated based on the cumulative vaccination total.
+  vaccinated using the cumulative vaccination total.
 ============================================================ */
 
 WITH PopvsVac AS (
