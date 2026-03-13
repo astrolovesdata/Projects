@@ -19,7 +19,7 @@ nashville_housing
 ============================================================ */
 
 /* ============================================================
-STEP: Inspect Data for Duplicate ParcelIDs
+STEP: Review Records Sharing the Same ParcelID
 ============================================================
 
 Before repairing missing addresses, it is helpful to examine
@@ -255,47 +255,6 @@ FROM nashville_housing
 LIMIT 10;
 
 /* ============================================================
-STEP: Split Owner Address into Address, City, and State
-============================================================
-
-The OwnerAddress column contains three components stored in
-a single field separated by commas:
-
-    Street Address, City, State
-
-Example:
-    1808 FOX CHASE DR, GOODLETTSVILLE, TN
-
-To improve data structure and enable easier filtering and
-analysis, the address is split into three separate elements:
-
-• OwnerSplitAddress → Street address
-• OwnerSplitCity    → City
-• OwnerSplitState   → State
-
-The MySQL function SUBSTRING_INDEX() is used to extract
-sections of the string based on the comma delimiter.
-
-SUBSTRING_INDEX(OwnerAddress, ',', 1)
-    → returns everything before the first comma (street address)
-
-SUBSTRING_INDEX(SUBSTRING_INDEX(OwnerAddress, ',', 2), ',', -1)
-    → extracts the city by first returning the first two
-      segments, then selecting the portion after the comma
-
-SUBSTRING_INDEX(OwnerAddress, ',', -1)
-    → returns everything after the last comma (state)
-
-This query previews the split results before creating
-permanent columns in the table.
-============================================================ */
-SELECT
-SUBSTRING_INDEX(OwnerAddress, ',', 1) AS OwnerSplitAddress,
-SUBSTRING_INDEX(SUBSTRING_INDEX(OwnerAddress, ',', 2), ',', -1) AS  OwnerSplitCity,
-SUBSTRING_INDEX(OwnerAddress, ',', -1) AS  OwnerSplitState
-FROM nashville_housing;
-
-/* ============================================================
 STEP: Split OwnerAddress into Address, City, and State Columns
 ===============================================================
 
@@ -347,37 +306,9 @@ SET OwnerSplitAddress = SUBSTRING_INDEX(OwnerAddress, ',', 1),
     OwnerSplitCity = TRIM(SUBSTRING_INDEX(SUBSTRING_INDEX(OwnerAddress, ',', 2), ',', -1)),
     OwnerSplitState = TRIM(SUBSTRING_INDEX(OwnerAddress, ',', -1));
    
+
 /* ============================================================
 STEP: Standardize SoldAsVacant Values
-===============================================================
-
-The SoldAsVacant column contains inconsistent categorical
-values:
-
-    Y, Yes
-    N, No
-
-To improve data consistency and simplify analysis, the
-abbreviated values are converted to their full forms:
-
-    Y → Yes
-    N → No
-
-A CASE statement is used to standardize the values while
-preserving any existing correct entries.
-============================================================ */
-
-SELECT 
-    SoldAsVacant,
-    CASE
-        WHEN SoldAsVacant = 'Y' THEN 'Yes'
-        WHEN SoldAsVacant = 'N' THEN 'No'
-        ELSE SoldAsVacant
-    END AS SoldAsVacant
-FROM nashville_housing;
-
-/* ============================================================
-DATA CLEANING STEP: Standardize SoldAsVacant Values
 ===============================================================
 
 Objective
@@ -489,7 +420,7 @@ SET SoldAsVacant =
     END;
     
 /* ============================================================
-DATA CLEANING STEP: Identify and Remove Duplicate Records
+STEP: Identify and Remove Duplicate Records
 ===============================================================
 
 Objective
@@ -666,7 +597,29 @@ WHERE group_count > 1
 ORDER BY ParcelID, PropertyAddress, SalePrice, SaleDate, LegalReference, row_num;
 
 
-select *
-from nashville_housing;
+/* ============================================================
+FINAL STEP: Preview Cleaned Dataset
+===============================================================
 
+After completing all cleaning transformations, this query
+displays a small sample of the dataset to confirm that the
+table structure and values appear as expected.
 
+This allows a quick visual inspection of the cleaned columns,
+including:
+
+• SaleDateConverted
+• PropertySplitAddress
+• PropertySplitCity
+• OwnerSplitAddress
+• OwnerSplitCity
+• OwnerSplitState
+• Standardized SoldAsVacant values
+
+The LIMIT clause returns only the first 10 rows to keep the
+output manageable.
+============================================================ */
+
+SELECT *
+FROM nashville_housing
+LIMIT 10;
