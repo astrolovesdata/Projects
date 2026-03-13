@@ -140,5 +140,6 @@ Create a time-series dataset showing infection growth over time.
 
 ---
 
-# Tableau Dashboard Preview
-[COVID Dashboard](images/tableau_dashboard_preview.png)](https://github.com/astrolovesdata/Projects/blob/main/Tableau%20Covid%20Dashboard.png)
+## Tableau Dashboard Preview
+
+![COVID Dashboard](../images/Tableau_Dashboard.png)
