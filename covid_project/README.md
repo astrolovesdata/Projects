@@ -194,6 +194,7 @@ Analysis of the global COVID-19 dataset revealed several notable patterns across
 
 • **Countries experienced very different infection trajectories over time.** The United States and United Kingdom showed rapid increases in infection percentage, while countries like China maintained relatively low infection rates throughout the timeline.
 
+---
 
 ## Project Structure
 
