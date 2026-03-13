@@ -180,6 +180,21 @@ These results can be visualized in **Tableau dashboards**.
 
 ---
 
+## Key Findings
+
+Analysis of the global COVID-19 dataset revealed several notable patterns across countries and continents.
+
+• **Global case fatality rate remained relatively low overall**, with approximately **150 million total cases and 3.18 million deaths**, resulting in an estimated **death rate of about 2.1%** during the period analyzed.
+
+• **Europe and North America recorded the highest total death counts**, indicating a significant early impact of the pandemic in these regions compared with other continents.
+
+• **Infection rates varied significantly across countries when normalized by population size.** The United States and the United Kingdom showed substantially higher infection percentages than countries such as China and India.
+
+• **Infection growth trends accelerated sharply during late 2020 and early 2021**, reflecting the major global waves of COVID-19 transmission observed during that period.
+
+• **Countries experienced very different infection trajectories over time.** The United States and United Kingdom showed rapid increases in infection percentage, while countries like China maintained relatively low infection rates throughout the timeline.
+
+
 ## Project Structure
 
 ```
