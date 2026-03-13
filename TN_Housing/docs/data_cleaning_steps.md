@@ -4,6 +4,17 @@ This document explains the **data cleaning steps performed on the Nashville Hous
 
 The objective of the cleaning process was to transform the raw dataset into a **structured and analysis-ready format** by addressing issues such as inconsistent data types, missing values, combined fields, and duplicate records.
 
+## Data Cleaning Summary
+
+| Step | Problem Identified | Solution Applied | SQL Technique |
+|-----|--------------------|-----------------|--------------|
+| 1 | `SaleDate` stored as text | Converted to SQL `DATE` format using `STR_TO_DATE()` | Data type conversion |
+| 2 | Missing property addresses | Filled missing values using a self join on `ParcelID` | Self join |
+| 3 | Property address stored in one field | Split into `PropertySplitAddress` and `PropertySplitCity` | String manipulation |
+| 4 | Owner address stored in one field | Split into address, city, and state columns | String manipulation |
+| 5 | Inconsistent `SoldAsVacant` values (`Y/N/Yes/No`) | Standardized values to `Yes` and `No` | CASE statement |
+| 6 | Duplicate property records | Identified and removed duplicates using `ROW_NUMBER()` window function | Window functions |
+
 The full SQL implementation of these steps can be found in:
 
 ```
