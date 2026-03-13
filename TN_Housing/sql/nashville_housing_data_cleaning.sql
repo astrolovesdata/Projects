@@ -111,9 +111,12 @@ LIMIT 10;
 STEP: Identify Rows with Missing Property Addresses
 ============================================================
 
-Some records contain missing property addresses. In this
-dataset, missing values were imported as empty strings ('')
-instead of NULL values.
+Some records contain missing property addresses. Depending
+on how the dataset was imported, missing values may appear
+as either:
+
+• empty strings ('')
+• NULL values
 
 To repair these records, the table is joined to itself
 (self-join) using ParcelID, which identifies the same
@@ -140,21 +143,22 @@ FROM nashville_housing a
 JOIN nashville_housing b
     ON a.ParcelID = b.ParcelID
    AND a.UniqueID != b.UniqueID
-WHERE a.PropertyAddress = '';
+WHERE a.PropertyAddress = ''
+   OR a.PropertyAddress IS NULL;
 
 
 /* ============================================================
 STEP: Populate Missing Property Addresses
 ============================================================
 
-Using the same self-join logic, the missing PropertyAddress
-values are updated using the address from another record with
-the same ParcelID.
+Using the same self-join logic, missing PropertyAddress
+values are updated using the address from another record
+with the same ParcelID.
 
 Conditions:
 • ParcelID must match (same property)
 • UniqueID must differ (different record)
-• The target record must have an empty address
+• The target record must have an empty or NULL address
 
 The IFNULL(NULLIF()) function treats empty strings as NULL so
 the correct address from the matching record is applied.
@@ -165,8 +169,8 @@ JOIN nashville_housing b
     ON a.ParcelID = b.ParcelID
    AND a.UniqueID != b.UniqueID
 SET a.PropertyAddress = IFNULL(NULLIF(a.PropertyAddress, ''), b.PropertyAddress)
-WHERE a.PropertyAddress = '';
-
+WHERE a.PropertyAddress = ''
+   OR a.PropertyAddress IS NULL;
 
 /* ============================================================
 STEP: Preview Split Property Address into Street and City
@@ -296,6 +300,7 @@ the comma separation.
 
 The extracted values are then stored in the new columns.
 ============================================================ */
+
 ALTER TABLE nashville_housing
 ADD OwnerSplitAddress VARCHAR(255),
 ADD OwnerSplitCity VARCHAR(255),
