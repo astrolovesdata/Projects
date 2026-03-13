@@ -4,7 +4,7 @@
 
 This section of the project focuses on building a **Tableau dashboard using SQL queries prepared in MySQL**. The goal was to transform COVID-19 data into visual insights that allow users to quickly understand global trends, infection rates, and death statistics.
 
-The visualizations were built using **aggregated SQL queries designed specifically for Tableau**, ensuring that the data returned was already structured at the correct level of detail for dashboard reporting.
+The visualizations were built using **aggregated SQL queries designed specifically for Tableau**, ensuring the data returned was already aggregated at the correct level of detail for dashboard reporting.
 
 The final dashboard highlights:
 
@@ -41,7 +41,7 @@ This visualization provides a quick high-level overview of the pandemic.
 
 ### 2. Death Count by Continent
 
-Ranks continents based on the total number of COVID-19 deaths.
+Ranks continents based on total reported COVID-19 deaths using continent-level records from the dataset.
 
 This allows users to quickly identify which regions experienced the highest death totals.
 
@@ -66,7 +66,7 @@ This allows comparison of infection growth patterns across countries.
 
 ---
 
-# SQL Queries Used for the Visualizations
+## SQL Queries Used for the Visualizations
 
 ### Visualization 1 – Global KPI
 
