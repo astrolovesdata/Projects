@@ -1,7 +1,3 @@
-Below is a **clean section you can place in your GitHub README** explaining only the **data loading process** you went through. This documents the troubleshooting and shows you understand **real-world database ingestion issues**.
-
----
-
 # Data Loading Process (MySQL)
 
 The Maven Fuzzy Factory dataset contains several large CSV files (over **1.6 million rows combined**). Due to the size of the dataset, the tables were imported using MySQL’s high-performance bulk loading method:
@@ -165,8 +161,3 @@ Expected dataset size:
 * It is commonly used in **production data pipelines**
 * It efficiently loads **large datasets into relational databases**
 
-This approach demonstrates familiarity with **real-world database ingestion workflows**.
-
----
-
-If you want, I can also give you a **shorter “interview-ready explanation”** of this process that you could use when discussing this project with recruiters or hiring managers.
