@@ -3,98 +3,118 @@
 Maven Fuzzy Factory - Exploratory Analysis & Core KPI Trends
 ==============================================================
 
-Purpose:
-This script performs the initial exploration of the Maven Fuzzy
-Factory dataset and answers key business questions around:
+Purpose
+-------
+Initial exploration of the Maven Fuzzy Factory dataset to
+understand traffic, orders, conversion performance,
+marketing channels, and monetization efficiency.
 
-1. Data coverage and table validation
-2. Website traffic trends
-3. Order volume trends
-4. Session-to-order conversion rate
-5. Marketing channel contribution
-6. Revenue per order
-7. Revenue per session
+Key Questions
+-------------
+1. What is the time range of the dataset?
+2. Did all tables load correctly?
+3. How is website traffic trending?
+4. How many orders are generated?
+5. What percentage of sessions convert to orders?
+6. Which marketing channels drive traffic?
+7. How much revenue does each order generate?
+8. How much revenue does each visitor generate?
 
-Notes:
-- Revenue logic must be chosen carefully in this dataset.
-- orders.price_usd represents total order-level revenue.
-- order_items.price_usd represents item-level revenue.
-- For high-level revenue metrics, either can work if used correctly.
-- For product-level and refund analysis, item-level tables will be needed.
+Revenue Notes
+-------------
+orders.price_usd       → total order value
+order_items.price_usd  → individual product value
 
-==============================================================
+Use order_items when analyzing:
+• product performance
+• refunds
+• basket size
+• item-level metrics
+
+Use orders when analyzing:
+• total order-level revenue
 */
+
+
+USE portfolioproject;
+
 
 
 /* ==========================================================
 1. DETERMINE DATA TIME RANGE
 ========================================================== */
 
--- Check the full date range of website session data
+-- Determine the full date range of website sessions
 SELECT
     MIN(created_at) AS first_session,
     MAX(created_at) AS last_session
 FROM website_sessions;
 
--- Check the full date range of order data
+-- Determine the full date range of orders
 SELECT
     MIN(created_at) AS first_order,
     MAX(created_at) AS last_order
 FROM orders;
 
--- Interpretation:
--- These queries confirm the approximate business analysis window.
--- Based on the dataset, the time range is expected to cover
--- about 3 years of activity, roughly from March 2012 to March 2015.
+/*
+Interpretation
+--------------
+Confirms the dataset covers approximately
+March 2012 – March 2015 (~3 years of ecommerce data).
+*/
 
 
 
 /* ==========================================================
-2. VALIDATE TABLE LOADS AND UNDERSTAND TABLE SIZE
+2. VALIDATE TABLE LOADS
 ========================================================== */
 
--- Confirm that all core tables loaded properly
--- and get a quick sense of dataset size
+-- Verify all tables loaded successfully
+-- and get a quick overview of dataset size
+
 SELECT 'website_sessions' AS table_name, COUNT(*) AS row_count
 FROM website_sessions
 
 UNION ALL
 
-SELECT 'website_pageviews' AS table_name, COUNT(*) AS row_count
+SELECT 'website_pageviews', COUNT(*)
 FROM website_pageviews
 
 UNION ALL
 
-SELECT 'orders' AS table_name, COUNT(*) AS row_count
+SELECT 'orders', COUNT(*)
 FROM orders
 
 UNION ALL
 
-SELECT 'order_items' AS table_name, COUNT(*) AS row_count
+SELECT 'order_items', COUNT(*)
 FROM order_items
 
 UNION ALL
 
-SELECT 'order_item_refunds' AS table_name, COUNT(*) AS row_count
+SELECT 'order_item_refunds', COUNT(*)
 FROM order_item_refunds
 
 UNION ALL
 
-SELECT 'products' AS table_name, COUNT(*) AS row_count
+SELECT 'products', COUNT(*)
 FROM products;
 
--- Interpretation:
--- This is a standard post-load validation step.
--- It confirms that all expected tables were imported successfully
--- and gives a quick overview of dataset scale.
+/*
+Purpose
+-------
+Standard validation step to confirm that
+all expected tables loaded correctly.
+*/
 
 
 
 /* ==========================================================
-3. ANALYSIS #1 - TREND IN WEBSITE SESSIONS
+3. WEBSITE SESSION TREND
 ========================================================== */
 
--- Count monthly website sessions to identify traffic growth over time
+-- Monthly website traffic trend
+
 SELECT
     YEAR(created_at) AS year,
     MONTH(created_at) AS month,
@@ -103,10 +123,12 @@ FROM website_sessions
 GROUP BY YEAR(created_at), MONTH(created_at)
 ORDER BY year, month;
 
--- Interpretation:
--- This query shows the monthly website traffic trend.
--- Each website_session_id represents one visit/session.
--- DISTINCT is used to ensure each session is counted only once.
+/*
+Interpretation
+--------------
+Each website_session_id represents one visit.
+This query reveals traffic growth over time.
+*/
 
 
 
@@ -114,7 +136,8 @@ ORDER BY year, month;
 4. MONTHLY ORDER VOLUME
 ========================================================== */
 
--- Count how many orders were generated each month
+-- Monthly number of orders
+
 SELECT
     YEAR(created_at) AS year,
     MONTH(created_at) AS month,
@@ -123,10 +146,13 @@ FROM orders
 GROUP BY YEAR(created_at), MONTH(created_at)
 ORDER BY year, month;
 
--- Interpretation:
--- This measures monthly purchase volume.
--- It is the basic demand trend and can be compared against
--- traffic growth to understand business performance.
+/*
+Interpretation
+--------------
+Shows purchase volume over time.
+Can be compared against session trends
+to understand demand growth.
+*/
 
 
 
@@ -134,8 +160,8 @@ ORDER BY year, month;
 5. SESSION-TO-ORDER CONVERSION RATE
 ========================================================== */
 
--- Calculate monthly conversion rate:
--- orders / sessions
+-- Percentage of sessions that result in orders
+
 SELECT
     YEAR(ws.created_at) AS year,
     MONTH(ws.created_at) AS month,
@@ -143,7 +169,7 @@ SELECT
     COUNT(DISTINCT o.order_id) AS orders,
     ROUND(
         COUNT(DISTINCT o.order_id) /
-        NULLIF(COUNT(DISTINCT ws.website_session_id), 0) * 100,
+        NULLIF(COUNT(DISTINCT ws.website_session_id),0) * 100,
         2
     ) AS conversion_rate
 FROM website_sessions ws
@@ -152,15 +178,16 @@ LEFT JOIN orders o
 GROUP BY YEAR(ws.created_at), MONTH(ws.created_at)
 ORDER BY year, month;
 
--- Interpretation:
--- LEFT JOIN is used so that all sessions are retained,
--- including those that did not result in an order.
---
--- conversion_rate = orders / sessions * 100
---
--- NULLIF(..., 0) prevents divide-by-zero errors.
--- In practice, monthly session counts should not be zero here,
--- but this is good defensive SQL practice.
+/*
+Notes
+-----
+LEFT JOIN ensures sessions without purchases remain included.
+
+conversion_rate =
+orders / sessions * 100
+
+NULLIF prevents divide-by-zero errors.
+*/
 
 
 
@@ -168,8 +195,8 @@ ORDER BY year, month;
 6. MARKETING CHANNEL EXPLORATION
 ========================================================== */
 
--- Preview high-level session sources
--- NULL values often indicate direct, organic, or untagged traffic
+-- High-level traffic sources
+
 SELECT
     utm_source,
     COUNT(*) AS sessions
@@ -177,7 +204,16 @@ FROM website_sessions
 GROUP BY utm_source
 ORDER BY sessions DESC;
 
--- Breakdown sessions by source / campaign / referrer combination
+/*
+NULL values typically indicate:
+• direct traffic
+• organic search
+• untagged traffic
+*/
+
+
+-- Detailed marketing channel breakdown
+
 SELECT
     utm_source,
     utm_campaign,
@@ -187,23 +223,21 @@ FROM website_sessions
 GROUP BY utm_source, utm_campaign, http_referer
 ORDER BY sessions DESC;
 
--- Interpretation:
--- These queries help identify which marketing channels
--- and campaign structures drive the most traffic.
---
--- Common patterns:
--- - utm_source identifies the traffic platform (e.g. gsearch, bsearch)
--- - utm_campaign identifies campaign intent (e.g. brand vs nonbrand)
--- - http_referer helps distinguish paid vs direct/organic traffic
+/*
+Purpose
+-------
+Identifies which marketing channels
+generate the most website traffic.
+*/
 
 
 
 /* ==========================================================
-7. REVENUE PER ORDER
+7. REVENUE PER ORDER (Average Order Value)
 ========================================================== */
 
--- Calculate total monthly revenue and average revenue per order
--- using item-level revenue
+-- Monthly revenue and average revenue per order
+
 SELECT
     YEAR(created_at) AS year,
     MONTH(created_at) AS month,
@@ -211,34 +245,31 @@ SELECT
     SUM(price_usd) AS revenue,
     ROUND(
         SUM(price_usd) /
-        NULLIF(COUNT(DISTINCT order_id), 0),
+        NULLIF(COUNT(DISTINCT order_id),0),
         2
     ) AS revenue_per_order
 FROM order_items
 GROUP BY YEAR(created_at), MONTH(created_at)
 ORDER BY year, month;
 
--- Interpretation:
--- This query calculates:
--- 1. total revenue
--- 2. average revenue per order
---
--- Revenue is summed from order_items.price_usd, which provides
--- item-level granularity.
---
--- Important:
--- In this dataset, revenue could also be analyzed using orders.price_usd.
--- However, using order_items is helpful when later analyses may require
--- item-level detail such as product mix or refunds.
+/*
+Explanation
+-----------
+Revenue calculated using order_items.price_usd
+to allow future item-level analysis.
+
+Metric:
+revenue_per_order = revenue / orders
+*/
 
 
 
 /* ==========================================================
-8. REVENUE PER SESSION
+8. REVENUE PER SESSION (Visitor Monetization)
 ========================================================== */
 
--- Calculate total monthly revenue and average revenue generated
--- per website session
+-- Monthly revenue generated per website visit
+
 SELECT
     YEAR(ws.created_at) AS year,
     MONTH(ws.created_at) AS month,
@@ -246,7 +277,7 @@ SELECT
     SUM(oi.price_usd) AS revenue,
     ROUND(
         SUM(oi.price_usd) /
-        NULLIF(COUNT(DISTINCT ws.website_session_id), 0),
+        NULLIF(COUNT(DISTINCT ws.website_session_id),0),
         2
     ) AS revenue_per_session
 FROM website_sessions ws
@@ -257,18 +288,21 @@ LEFT JOIN order_items oi
 GROUP BY YEAR(ws.created_at), MONTH(ws.created_at)
 ORDER BY year, month;
 
--- Interpretation:
--- This query measures monetization efficiency:
---
--- revenue_per_session = revenue / sessions
---
--- It is not the same as revenue per order.
--- Instead, it shows how much revenue each visit generates on average.
---
--- This metric combines both:
--- 1. conversion rate
--- 2. revenue per order
---
--- In other words:
---
--- revenue_per_session = conversion_rate × revenue_per_order
+/*
+Explanation
+-----------
+Revenue per Session = Revenue / Sessions
+
+This metric measures overall monetization efficiency.
+
+Important relationship:
+
+Revenue per Session
+= Conversion Rate × Revenue per Order
+
+It captures both:
+• website conversion performance
+• average customer spending
+
+Making it a strong KPI for ecommerce performance.
+*/
