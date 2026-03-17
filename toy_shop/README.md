@@ -4,9 +4,9 @@
 
 Over a three-year period, Maven Fuzzy Factory achieved significant growth:
 
-- Traffic increased by ~15x
-- Conversion rate improved from ~3% to ~9%
-- Revenue per visitor increased from ~$1.5 to ~$5+
+- Traffic increased by 15x
+- Conversion rate improved from 3% to 9%
+- Revenue per visitor increased from $1.5 to $5+
 
 This demonstrates strong performance driven by both **customer acquisition and improved monetization efficiency**.
 
