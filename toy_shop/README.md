@@ -1,5 +1,17 @@
 # Maven Fuzzy Factory — Ecommerce Performance Analysis
 
+## Key Result
+
+Over a three-year period, Maven Fuzzy Factory achieved significant growth:
+
+- Traffic increased by ~15x
+- Conversion rate improved from ~3% to ~9%
+- Revenue per visitor increased from ~$1.5 to ~$5+
+
+This demonstrates strong performance driven by both **customer acquisition and improved monetization efficiency**.
+
+---
+
 ## Project Overview
 
 This project analyzes the **Maven Fuzzy Factory ecommerce dataset** to understand how the business has grown over time and what factors drive revenue performance.
@@ -16,7 +28,7 @@ The goal is to identify **key trends in website performance and ecommerce revenu
 
 ---
 
-# Dataset Overview
+## Dataset Overview
 
 The dataset contains approximately **three years of ecommerce activity (March 2012 – March 2015)**.
 
@@ -33,12 +45,11 @@ The database includes the following core tables:
 
 ---
 
-# Data Model
+## Data Model
 
 The tables are connected through the following relationships:
 
 ```
-
 website_sessions
 │
 │ website_session_id
@@ -48,14 +59,13 @@ orders
 │ order_id
 ▼
 order_items
-
-````
+```
 
 Key identifiers:
 
-- **website_session_id** → unique visitor session
-- **order_id** → purchase transaction
-- **order_item_id** → individual product within an order
+- **website_session_id** → unique visitor session  
+- **order_id** → purchase transaction  
+- **order_item_id** → individual product within an order  
 
 Revenue data can appear in two places:
 
@@ -68,24 +78,22 @@ For this project, **item-level revenue (`order_items.price_usd`) is used** to al
 
 ---
 
-# Key Business Questions
+## Key Business Questions
 
 The analysis answers the following questions:
 
-1. What is the overall **traffic trend**?
-2. How has **order volume** changed over time?
-3. What percentage of sessions convert into purchases?
-4. Which **marketing channels** drive the most traffic?
-5. How much revenue does each order generate?
-6. How much revenue does each visitor generate?
+1. What is the overall **traffic trend**?  
+2. How has **order volume** changed over time?  
+3. What percentage of sessions convert into purchases?  
+4. Which **marketing channels** drive the most traffic?  
+5. How much revenue does each order generate?  
+6. How much revenue does each visitor generate?  
 
 ---
 
-# Analysis Steps
+## Analysis Steps
 
-## 1. Data Coverage Validation
-
-The first step verifies the time range of the dataset.
+### 1. Data Coverage Validation
 
 ```sql
 SELECT
@@ -97,17 +105,14 @@ SELECT
 MIN(created_at) AS first_order,
 MAX(created_at) AS last_order
 FROM orders;
-````
+```
 
-**Result**
-
+**Result:**  
 The dataset spans approximately **March 2012 – March 2015**.
 
 ---
 
-## 2. Table Validation
-
-To ensure all tables loaded properly:
+### 2. Table Validation
 
 ```sql
 SELECT 'website_sessions', COUNT(*) FROM website_sessions
@@ -127,9 +132,7 @@ This confirms the dataset contains **complete ecommerce records**.
 
 ---
 
-# Website Traffic Trend
-
-Monthly sessions were calculated using:
+## Website Traffic Trend
 
 ```sql
 SELECT
@@ -145,13 +148,11 @@ ORDER BY year, month;
 
 Website traffic increased dramatically over time, growing from a few thousand monthly sessions to more than **25,000 sessions per month** by the end of the dataset.
 
-This indicates successful growth in **customer acquisition efforts**.
+This indicates strong growth in **customer acquisition**.
 
 ---
 
-# Order Volume Trend
-
-Monthly orders were calculated using:
+## Order Volume Trend
 
 ```sql
 SELECT
@@ -165,15 +166,13 @@ ORDER BY year, month;
 
 ### Insight
 
-Orders increased alongside traffic, confirming **growing customer demand**.
+Order volume increased alongside traffic, confirming **growing customer demand**.
 
 However, order growth alone does not reveal whether the website is becoming more effective at converting visitors.
 
 ---
 
-# Conversion Rate
-
-Conversion rate measures the percentage of visitors who place an order.
+## Conversion Rate
 
 ```sql
 SELECT
@@ -199,9 +198,7 @@ Conversion rate improved significantly during the analysis period, indicating th
 
 ---
 
-# Marketing Channel Analysis
-
-Traffic sources were analyzed using UTM parameters.
+## Marketing Channel Analysis
 
 ```sql
 SELECT
@@ -218,13 +215,11 @@ ORDER BY sessions DESC;
 
 Paid search marketing (especially Google non-brand campaigns) drove the majority of website traffic.
 
-Other channels contributed significantly less traffic, indicating a **strong reliance on search advertising**.
+Other channels contributed significantly less traffic volume, indicating a **strong reliance on search advertising**.
 
 ---
 
-# Revenue per Order (Average Order Value)
-
-Average order value was calculated using item-level revenue.
+## Revenue per Order (Average Order Value)
 
 ```sql
 SELECT
@@ -246,14 +241,12 @@ ORDER BY year, month;
 
 Average revenue per order increased gradually over time, suggesting that customers were either:
 
-* purchasing more products per order, or
-* purchasing higher-value products.
+- purchasing more products per order  
+- purchasing higher-value products  
 
 ---
 
-# Revenue per Session (Monetization Efficiency)
-
-Revenue per session measures how much revenue each visitor generates on average.
+## Revenue per Session (Monetization Efficiency)
 
 ```sql
 SELECT
@@ -277,44 +270,77 @@ ORDER BY year, month;
 
 Revenue per session can be interpreted as:
 
-```
-Revenue per Session =
-Conversion Rate × Revenue per Order
-```
+Revenue per Session = Conversion Rate × Revenue per Order
 
 ### Insight
 
 Revenue per session increased steadily over time, indicating improvements in both:
 
-* conversion performance
-* customer spending behavior
+- conversion performance  
+- customer spending behavior  
 
 This makes it a powerful summary metric for **overall ecommerce performance**.
 
 ---
 
-# Key Takeaways
+## Strategic Analysis (Putting It All Together)
 
-* Website traffic grew substantially over the three-year period.
-* Order volume increased alongside traffic.
-* Conversion rates improved significantly.
-* Average order value increased gradually.
-* Revenue per visitor improved consistently.
+The business achieved growth through a combination of:
 
-Overall, the business experienced strong growth driven by **both increased traffic and improved conversion performance**.
+- increasing traffic  
+- improving conversion rate  
+- increasing revenue per order  
 
----
+Revenue per session increased significantly, confirming that the business improved its ability to **monetize each visitor**.
 
-# Tools Used
-
-* MySQL
-* SQL
-* Google Sheets (visualization)
-* GitHub
+This indicates a maturing ecommerce operation with improving efficiency, not just increasing traffic volume.
 
 ---
 
-# Project Structure
+## Business Recommendations
+
+### 1. Diversify marketing channels
+Reduce reliance on Google paid search by investing in SEO, email marketing, and social channels.
+
+### 2. Optimize paid search performance
+Focus budget on high-converting campaigns and eliminate underperforming keywords.
+
+### 3. Continue conversion optimization
+Improve landing pages, product pages, and checkout flow through testing and UX improvements.
+
+### 4. Increase average order value
+Introduce bundles, upselling, and free shipping thresholds to encourage larger purchases.
+
+### 5. Improve tracking and attribution
+Reduce "undetermined" traffic by improving UTM tagging and campaign tracking.
+
+### 6. Monitor revenue per session as a core KPI
+Use this metric to track overall business performance since it combines conversion and revenue.
+
+---
+
+## Key Takeaways
+
+- Website traffic grew substantially over the three-year period  
+- Order volume increased alongside traffic  
+- Conversion rates improved significantly  
+- Average order value increased gradually  
+- Revenue per visitor improved consistently  
+
+Overall, the business experienced strong growth driven by **both increased traffic and improved monetization efficiency**.
+
+---
+
+## Tools Used
+
+- MySQL  
+- SQL  
+- Google Sheets (visualization)  
+- GitHub  
+
+---
+
+## Project Structure
 
 ```
 maven-fuzzy-factory-analysis
