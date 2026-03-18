@@ -12,7 +12,7 @@ This demonstrates strong performance driven by both **customer acquisition and i
 
 ---
 
-## 📊 Key Performance Indicators
+## Key Performance Indicators
 
 The following KPIs summarize overall business performance during the analysis period:
 
@@ -27,7 +27,7 @@ These metrics provide a consolidated view of traffic, conversion efficiency, and
 
 ---
 
-## 📊 Tableau Dashboards
+## Tableau Dashboards
 
 ### 1️⃣ Executive Overview & Revenue Efficiency
 
