@@ -12,6 +12,73 @@ This demonstrates strong performance driven by both **customer acquisition and i
 
 ---
 
+## 📊 Key Performance Indicators
+
+The following KPIs summarize overall business performance during the analysis period:
+
+- **Total Sessions:** ~470K  
+- **Total Orders:** ~32K  
+- **Conversion Rate:** ~6.8%  
+- **Total Revenue:** ~$1.9M  
+- **Revenue per Order (AOV):** ~$56  
+- **Revenue per Session:** ~$3.5  
+
+These metrics provide a consolidated view of traffic, conversion efficiency, and monetization performance.
+
+---
+
+## 📊 Tableau Dashboards
+
+---
+
+### 1️⃣ Executive Overview & Revenue Efficiency
+
+🔗 **Live Dashboard:**  
+https://public.tableau.com/views/Toy_store/ToyStore1
+
+📸 **Preview:**  
+![Executive Dashboard](dashboards/dashboard_1.png)
+
+**What it shows:**
+- Core KPIs (Sessions, Orders, Conversion Rate, Revenue)
+- Revenue per Order vs Revenue per Session (dual-axis)
+- Website sessions growth trend
+- Overall monetization performance over time
+
+---
+
+### 2️⃣ Traffic, Orders & Conversion Trends
+
+🔗 **Live Dashboard:**  
+https://public.tableau.com/views/Toy_store_2/ToyStore2
+
+📸 **Preview:**  
+![Trends Dashboard](dashboards/dashboard_2.png)
+
+**What it shows:**
+- Website sessions trend over time
+- Monthly order volume growth
+- Conversion rate improvement trend
+- Relationship between traffic and order growth
+
+---
+
+### 3️⃣ Marketing Channel Performance
+
+🔗 **Live Dashboard:**  
+https://public.tableau.com/views/Toy_store_3/ToyStore3
+
+📸 **Preview:**  
+![Channel Dashboard](dashboards/dashboard_3.png)
+
+**What it shows:**
+- Sessions by marketing channel
+- Channel contribution comparison
+- Identification of top-performing acquisition sources
+- Insight into unattributed traffic (NULL = direct/organic/untracked)
+
+---
+
 ## Project Overview
 
 This project analyzes the **Maven Fuzzy Factory ecommerce dataset** to understand how the business has grown over time and what factors drive revenue performance.
@@ -335,18 +402,22 @@ Overall, the business experienced strong growth driven by **both increased traff
 
 - MySQL  
 - SQL  
-- Google Sheets (visualization)  
+- Tableau (Data Visualization)  
 - GitHub  
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
 ```
-maven-fuzzy-factory-analysis
+toy_shop/
 │
-├── README.md
-├── exploratory_analysis.sql
-├── data_loading.sql
-└── visualizations
+├── README.md                     # Project overview and analysis
+├── data/                         # Data loading / preparation files
+├── sql/
+│   └── exploratory_analysis.sql  # Core SQL analysis queries
+├── dashboards/
+│   ├── dashboard_1.png           # Executive overview dashboard
+│   ├── dashboard_2.png           # Trends & performance dashboard
+│   └── dashboard_3.png           # Marketing channel analysis dashboard
 ```
