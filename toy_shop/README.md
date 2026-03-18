@@ -419,3 +419,9 @@ toy_shop/
 │   ├── dashboard_2.png           # Trends & performance dashboard
 │   └── dashboard_3.png           # Marketing channel analysis dashboard
 ```
+
+## Author
+
+**Alfonso Gutierrez**
+
+Data Analytics | SQL | Business Intelligence
