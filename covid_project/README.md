@@ -218,6 +218,3 @@ covid_project
 **Alfonso Gutierrez**
 
 Data Analytics | SQL | Business Intelligence
-
-```
-```
