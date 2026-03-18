@@ -16,12 +16,12 @@ This demonstrates strong performance driven by both **customer acquisition and i
 
 The following KPIs summarize overall business performance during the analysis period:
 
-- **Total Sessions:** ~470K  
-- **Total Orders:** ~32K  
-- **Conversion Rate:** ~6.8%  
-- **Total Revenue:** ~$1.9M  
-- **Revenue per Order (AOV):** ~$56  
-- **Revenue per Session:** ~$3.5  
+- **Total Sessions:** 470K  
+- **Total Orders:** 32K  
+- **Conversion Rate:** 6.8%  
+- **Total Revenue:** $1.9M  
+- **Revenue per Order (AOV):** $56  
+- **Revenue per Session:** $3.5  
 
 These metrics provide a consolidated view of traffic, conversion efficiency, and monetization performance.
 
