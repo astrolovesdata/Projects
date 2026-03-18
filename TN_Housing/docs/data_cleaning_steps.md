@@ -192,3 +192,8 @@ Analysis-Ready Dataset
 
 ---
 
+## Author
+
+**Alfonso Gutierrez**
+
+Data Analytics | SQL | Business Intelligence
