@@ -9,7 +9,22 @@ Welcome to my data analytics portfolio. This repository contains projects demons
 ---
 
 ## Projects
+## 📂 Projects
 
+### 📌 SQL & Data Modeling
+- [📊 Appointment Database Project (ERD + SQL)](./appointment_database)  
+  Design of a relational database with ERD modeling and SQL analysis.
+
+### 📌 Data Cleaning
+- [🏠 Nashville Housing Data Cleaning](./TN_Housing)  
+  Data cleaning using SQL, handling nulls, duplicates, and standardization.
+
+### 📌 Data Analysis
+- [🦠 COVID Data Analysis](./covid_project)  
+  Global trends analysis using SQL and Tableau.
+
+- [🧸 Toy Store Sales Analysis](./toy_shop)  
+  Revenue, conversion rate, and customer behavior analysis.
 ### 1. COVID-19 Global Data Analysis
 - SQL-based analysis of infection and mortality trends
 - Tableau dashboard for visualization
