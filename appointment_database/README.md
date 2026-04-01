@@ -1,4 +1,10 @@
 # 📊 Appointment Booking Database Project (ERD + SQL)
+## 🚀 Key Results
+
+- Designed a relational database using an Entity Relationship Diagram (ERD) to model business operations
+- Implemented a multi-table schema in SQL with primary and foreign key relationships
+- Analyzed customer activity, service demand, and staff workload using JOINs and aggregations
+- Calculated revenue and booking trends to support business decision-making
 
 ## 📌 Project Overview
 
