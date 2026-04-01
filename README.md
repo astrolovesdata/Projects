@@ -25,6 +25,7 @@ Welcome to my data analytics portfolio. This repository contains projects demons
 
 - [🧸 Toy Store Sales Analysis](./toy_shop)  
   Revenue, conversion rate, and customer behavior analysis.
+---  
 ### 1. COVID-19 Global Data Analysis
 - SQL-based analysis of infection and mortality trends
 - Tableau dashboard for visualization
