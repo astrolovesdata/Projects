@@ -1,15 +1,21 @@
 # Maven Fuzzy Factory — Ecommerce Performance Analysis
 
-## Key Result
+## 🚀 Key Results
+
+- Analyzed e-commerce data to evaluate revenue, conversion rates, and customer behavior  
+- Calculated revenue per session to measure monetization efficiency  
+- Identified trends in traffic and sales performance over time  
+- Provided insights to support marketing and growth strategies  
+
+### 📈 Business Impact
 
 Over a three-year period, Maven Fuzzy Factory achieved significant growth:
 
-- Traffic increased by 15x
-- Conversion rate improved from 3% to 9%
-- Revenue per visitor increased from $1.5 to $5+
+- Traffic increased by 15x  
+- Conversion rate improved from 3% to 9%  
+- Revenue per visitor increased from $1.5 to $5+  
 
-This demonstrates strong performance driven by both **customer acquisition and improved monetization efficiency**.
-
+This demonstrates strong performance driven by both **customer acquisition** and **improved monetization efficiency**.
 ---
 
 ## Key Performance Indicators
