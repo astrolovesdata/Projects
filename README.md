@@ -30,6 +30,8 @@ Welcome to my data analytics portfolio. This repository contains projects demons
 - SQL-based analysis of infection and mortality trends
 - Tableau dashboard for visualization
 
+---
+
 📁 Folder: covid_project
 
 ---
