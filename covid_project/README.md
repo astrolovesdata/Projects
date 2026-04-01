@@ -1,5 +1,11 @@
 # COVID-19 Global Data Analysis
+## 🚀 Key Results
 
+- Analyzed global COVID-19 data to identify trends in infection and mortality rates
+- Calculated key metrics such as case fatality rate and infection percentage using SQL
+- Built queries to support time-series analysis and country-level comparisons
+- Developed Tableau dashboards to visualize trends and communicate insights
+- 
 ## Project Overview
 
 This project analyzes global COVID-19 trends using data from **Our World in Data**.  
