@@ -8,9 +8,10 @@
 - Supported growth analysis showing:
   - Traffic increased by 15x  
   - Conversion rate improved from 3% to 9%  
-  - Revenue per visitor increased from $1.5 to $5+  
-
+  - Revenue per visitor increased from $1.5 to $5+
+  
 These results highlight growth driven by both customer acquisition and improved monetization efficiency.
+
 ---
 
 ## Key Performance Indicators
