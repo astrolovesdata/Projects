@@ -8,7 +8,6 @@ Welcome to my data analytics portfolio. This repository contains projects demons
 
 ---
 
-## Projects
 ## 📂 Projects
 
 ### 📌 SQL & Data Modeling
