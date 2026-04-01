@@ -1,5 +1,10 @@
 # Nashville Housing Data Cleaning Process
+## 🚀 Key Results
 
+- Cleaned and standardized a real-world housing dataset to improve data quality and usability
+- Identified and removed duplicate records using SQL window functions
+- Transformed and formatted inconsistent data (dates, addresses, categorical values)
+- Prepared a reliable dataset for downstream analysis and reporting
 This document explains the **data cleaning steps performed on the Nashville Housing dataset** using SQL.
 
 The objective of the cleaning process was to transform the raw dataset into a **structured and analysis-ready format** by addressing issues such as inconsistent data types, missing values, combined fields, and duplicate records.
