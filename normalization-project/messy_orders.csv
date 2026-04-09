@@ -1,0 +1,4 @@
+OrderID,CustomerName,CustomerPhone,ProductsOrdered,ProductPrices
+1001,John Smith,111-222-3333,"Laptop,Mouse","1200,25"
+1002,Emily Davis,777-888-9999,"Phone","800"
+1003,Jack Lee,333-444-5555,"Laptop,Monitor,Keyboard","1200,300,100"
