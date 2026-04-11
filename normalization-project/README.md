@@ -4,37 +4,16 @@
 
 ## Project Overview
 
-In this project, you will learn how to transform messy data into a clean, structured database using data normalization.
+In this project, you will learn how to transform messy data into a clean, structured database using **data normalization**.
 
 We will walk step by step through:
 
-- UNF (Unnormalized Form)
-- 1NF (First Normal Form)
-- 2NF (Second Normal Form)
-- 3NF (Third Normal Form)
+- UNF (Unnormalized Form)  
+- 1NF (First Normal Form)  
+- 2NF (Second Normal Form)  
+- 3NF (Third Normal Form)  
 
-This tutorial focuses on understanding the logic behind normalization, not complex SQL techniques.
-
----
-
-## Important Note (Real-World Design)
-
-The original dataset does NOT include:
-- CustomerID  
-- ProductID  
-
-These are introduced later as surrogate keys.
-
-### What are surrogate keys?
-
-Surrogate keys are artificial IDs used to uniquely identify records.
-
-They are used because:
-- Names can repeat (e.g., multiple "John Smith")
-- Text fields are inefficient for joins
-- IDs create cleaner and more reliable relationships
-
-This is standard practice in real-world database design.
+This tutorial focuses on understanding the **logic behind normalization**, not complex SQL techniques.
 
 ---
 
@@ -54,13 +33,13 @@ Here’s what their data looks like:
 
 ## Step 0: UNF (Unnormalized Form)
 
-This data is in Unnormalized Form (UNF).
+This data is in **Unnormalized Form (UNF)**.
 
-### Problems:
+### Problems
 
-- Multiple values in one column (repeating groups)  
-- Fields are not atomic  
-- Customer data is repeated (redundancy)  
+- Multiple values in one column → repeating groups  
+- Fields are not atomic → atomic values violation  
+- Customer data is repeated → redundancy  
 - Difficult to query and maintain  
 
 ---
@@ -69,11 +48,8 @@ This data is in Unnormalized Form (UNF).
 
 ### Goal
 
-Ensure all fields contain atomic values.
-
+Ensure all fields contain **atomic values**.  
 One product per row.
-
----
 
 ### 1NF Table
 
@@ -86,38 +62,16 @@ One product per row.
 | 1003   | Jack Lee     | 333-444-5555  | Monitor     | 300          |
 | 1003   | Jack Lee     | 333-444-5555  | Keyboard    | 100          |
 
-### Remaining Issue
-
-Customer information is still repeated for every product.
-
 ---
 
 ## Step 2: Convert to 2NF
 
 ### Goal
 
-Remove partial dependencies.
+Remove partial dependencies.  
+Customer data should not repeat for every product row.
 
-### What is a partial dependency?
-
-If a table uses a composite key (more than one column), like:
-
-(OrderID, ProductName)
-
-Then every column must depend on both parts of that key.
-
-### Problem
-
-- CustomerName depends only on OrderID  
-- It does NOT depend on ProductName  
-
-This is a partial dependency.
-
----
-
-### Solution
-
-Split the data into separate tables:
+### 2NF Tables
 
 #### Customers
 
@@ -152,28 +106,25 @@ Split the data into separate tables:
 
 ### Goal
 
-Remove transitive dependencies.
+Remove transitive dependencies. Each table should represent a single entity, eliminating redundancy.
 
-### What is a transitive dependency?
+### Customers
 
-A column depends on another non-key column instead of the primary key.
+| CustomerID | CustomerName | CustomerPhone |
+|-----------|--------------|---------------|
+| C1        | John Smith   | 111-222-3333  |
+| C2        | Emily Davis  | 777-888-9999  |
+| C3        | Jack Lee     | 333-444-5555  |
 
-### Problem
+### Orders
 
-- ProductPrice depends on ProductName  
-- Not directly on OrderID  
+| OrderID | CustomerID |
+|--------|------------|
+| 1001   | C1         |
+| 1002   | C2         |
+| 1003   | C3         |
 
-This creates a dependency chain:
-
-Order → Product → Price
-
----
-
-### Solution
-
-Move product information into its own table.
-
-#### Products
+### Products
 
 | ProductID | ProductName | ProductPrice |
 |----------|-------------|--------------|
@@ -183,7 +134,7 @@ Move product information into its own table.
 | P4       | Monitor     | 300          |
 | P5       | Keyboard    | 100          |
 
-#### OrderDetails
+### OrderDetails
 
 | OrderID | ProductID |
 |--------|-----------|
@@ -194,15 +145,21 @@ Move product information into its own table.
 | 1003   | P4        |
 | 1003   | P5        |
 
+**Explanation:**  
+`OrderDetails` is a junction table connecting `Orders` and `Products`.  
+- `OrderID` is both a **Primary Key (PK)** and a **Foreign Key (FK)** referencing `Orders`.  
+- `ProductID` is both a **PK** and **FK** referencing `Products`.  
+- The **composite PK** (`OrderID + ProductID`) ensures that each product appears **at most once per order**, while maintaining referential integrity to both parent tables.
+
+### ERD Diagram
+
+![3NF ERD](normalization-project/images/Normalization ERD.png)
+
 ---
 
-## Final Query (Reporting View)
+## Optional: Rebuilding Original View
 
-The final query demonstrates how normalized data can be recombined into a denormalized, business-friendly format for reporting purposes.
-
-The database remains normalized for storage efficiency, while this query produces a denormalized view for readability and analysis.
-
-From a business perspective, this allows teams to generate clear, report-ready outputs (e.g., customer orders with product summaries) without compromising the integrity and efficiency of the underlying database design.
+Although the database is normalized, we can recreate the original “spreadsheet-style” view using SQL:
 
 ```sql
 SELECT
@@ -215,14 +172,3 @@ JOIN customers c ON o.CustomerID = c.CustomerID
 JOIN order_details od ON o.OrderID = od.OrderID
 JOIN products p ON od.ProductID = p.ProductID
 GROUP BY o.OrderID, c.CustomerName;
-```
-
-## Glossary
-
-- **UNF (Unnormalized Form):** Data with repeating groups or multiple values in a single field  
-- **1NF (First Normal Form):** Ensures all values are atomic (one value per cell)  
-- **2NF (Second Normal Form):** Removes partial dependencies (columns must depend on the full key)  
-- **3NF (Third Normal Form):** Removes transitive dependencies (columns depend only on the primary key)  
-- **Partial Dependency:** When a column depends on only part of a composite key  
-- **Transitive Dependency:** When a column depends on another non-key column  
-- **Surrogate Key:** An artificial ID used to uniquely identify records  
