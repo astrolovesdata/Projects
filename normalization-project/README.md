@@ -153,7 +153,7 @@ Remove transitive dependencies. Each table should represent a single entity, eli
 
 ### ERD Diagram
 
-![3NF ERD](normalization-project/images/Normalization ERD.png)
+![3NF ERD](images/Normalization ERD.png)
 
 ---
 
