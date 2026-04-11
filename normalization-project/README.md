@@ -174,6 +174,7 @@ FROM orders o
 JOIN customers c ON o.CustomerID = c.CustomerID
 JOIN order_details od ON o.OrderID = od.OrderID
 JOIN products p ON od.ProductID = p.ProductID;
+```
 ## Optional: Rebuilding Original View
 
 Although the database is normalized, we can recreate the original “spreadsheet-style” view using SQL:
