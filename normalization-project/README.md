@@ -155,7 +155,6 @@ Remove transitive dependencies(5). Each table should represent a single entity a
 
 The ERD (Entity-Relationship Diagram) visually represents the fully normalized 3NF database structure.  
 It shows how each table is related, highlights the primary and foreign keys, and makes it easier to understand the relationships and flow of data.  
-This diagram helps beginners **see the structure at a glance** instead of only reading the table definitions.
 
 ![3NF ERD](images/normalization_erd.png)
 
