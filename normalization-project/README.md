@@ -153,7 +153,7 @@ Remove transitive dependencies(5). Each table should represent a single entity a
 
 ### ERD Diagram
 
-![3NF ERD](normalization-project/images/Normalization ERD.png)
+![3NF ERD]images/normalization_erd.png)
 
 ---
 
@@ -172,6 +172,7 @@ JOIN customers c ON o.CustomerID = c.CustomerID
 JOIN order_details od ON o.OrderID = od.OrderID
 JOIN products p ON od.ProductID = p.ProductID
 GROUP BY o.OrderID, c.CustomerName;
+```
 
 ## Glossary
 
