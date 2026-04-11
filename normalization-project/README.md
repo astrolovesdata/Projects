@@ -6,7 +6,7 @@
 
 Databases often start with messy or unstructured data, which can be difficult to manage, query, and maintain. **Data normalization** is a process used to organize data into clean, structured tables while minimizing redundancy and ensuring data integrity.  
 
-In this tutorial, you will see how a dataset moves through:
+This tutorial demonstrates how a dataset moves through:
 
 - **UNF (Unnormalized Form)**  
 - **1NF (First Normal Form)**  
@@ -33,7 +33,7 @@ Here’s the messy data:
 
 ## Step 0: UNF (Unnormalized Form)
 
-This data is in **Unnormalized Form (UNF)**.  
+This data is in **Unnormalized Form (UNF)**.
 
 ### Problems
 
@@ -172,3 +172,11 @@ JOIN customers c ON o.CustomerID = c.CustomerID
 JOIN order_details od ON o.OrderID = od.OrderID
 JOIN products p ON od.ProductID = p.ProductID
 GROUP BY o.OrderID, c.CustomerName;
+
+## Glossary
+
+1. **Repeating Groups** – Multiple values stored in a single column.  
+2. **Atomic Values** – Each field stores a single, indivisible value.  
+3. **Redundancy** – Duplicate data stored unnecessarily in a database.  
+4. **Partial Dependency** – A non-key attribute depends on only part of a composite primary key.  
+5. **Transitive Dependency** – A non-key attribute depends on another non-key attribute instead of depending directly on the primary key.
