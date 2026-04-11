@@ -2,18 +2,18 @@
 
 ---
 
-## Project Overview
+## Introduction
 
-In this project, you will learn how to transform messy data into a clean, structured database using **data normalization**.
+Databases often start with messy or unstructured data, which can be difficult to manage, query, and maintain. **Data normalization** is a process used to organize data into clean, structured tables while minimizing redundancy and ensuring data integrity.  
 
-We will walk step by step through:
+In this tutorial, you will see how a dataset moves through:
 
-- UNF (Unnormalized Form)  
-- 1NF (First Normal Form)  
-- 2NF (Second Normal Form)  
-- 3NF (Third Normal Form)  
+- **UNF (Unnormalized Form)**  
+- **1NF (First Normal Form)**  
+- **2NF (Second Normal Form)**  
+- **3NF (Third Normal Form)**  
 
-This tutorial focuses on understanding the **logic behind normalization**, not complex SQL techniques.
+You will learn **why each step is necessary** and how the data is transformed into a well-structured relational model.
 
 ---
 
@@ -21,7 +21,7 @@ This tutorial focuses on understanding the **logic behind normalization**, not c
 
 A small business tracks customer orders in a spreadsheet.
 
-Here’s what their data looks like:
+Here’s the messy data:
 
 | OrderID | CustomerName | CustomerPhone | ProductsOrdered              | ProductPrices     |
 |--------|--------------|---------------|------------------------------|-------------------|
@@ -33,13 +33,13 @@ Here’s what their data looks like:
 
 ## Step 0: UNF (Unnormalized Form)
 
-This data is in **Unnormalized Form (UNF)**.
+This data is in **Unnormalized Form (UNF)**.  
 
 ### Problems
 
-- Multiple values in one column → repeating groups  
-- Fields are not atomic → atomic values violation  
-- Customer data is repeated → redundancy  
+- Multiple values in one column → repeating groups(1)  
+- Fields are not atomic → atomic values violation(2)  
+- Customer data is repeated → redundancy(3)  
 - Difficult to query and maintain  
 
 ---
@@ -48,8 +48,8 @@ This data is in **Unnormalized Form (UNF)**.
 
 ### Goal
 
-Ensure all fields contain **atomic values**.  
-One product per row.
+Ensure all fields contain **atomic values(2)**.  
+Each row represents a single product in an order.
 
 ### 1NF Table
 
@@ -68,7 +68,7 @@ One product per row.
 
 ### Goal
 
-Remove partial dependencies.  
+Remove partial dependencies(4).  
 Customer data should not repeat for every product row.
 
 ### 2NF Tables
@@ -106,7 +106,7 @@ Customer data should not repeat for every product row.
 
 ### Goal
 
-Remove transitive dependencies. Each table should represent a single entity, eliminating redundancy.
+Remove transitive dependencies(5). Each table should represent a single entity and eliminate redundancy.
 
 ### Customers
 
@@ -153,7 +153,7 @@ Remove transitive dependencies. Each table should represent a single entity, eli
 
 ### ERD Diagram
 
-![3NF ERD](images/normalization_erd.png)
+![3NF ERD](normalization-project/images/Normalization ERD.png)
 
 ---
 
