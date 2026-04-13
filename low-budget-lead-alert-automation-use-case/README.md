@@ -2,55 +2,56 @@
 
 ## Project Overview
 
-This project demonstrates how a small business can use low-cost tools to notify the sales team when a new lead submits a website contact form.
+This project demonstrates how a small business can use affordable and accessible tools to notify the sales team when a new lead submits a website contact form.
 
-Instead of purchasing expensive CRM software, the business used:
+Instead of purchasing expensive CRM software, the business implemented a practical workflow using:
 
-- Website Contact Form
-- Airtable
-- Google Sheets
-- Google Apps Script
+- Website Contact Form  
+- Airtable  
+- Google Sheets  
+- Google Apps Script  
 - Email Notifications
 
-The solution improves response speed, visibility, and lead handling while keeping costs low.
+The solution improves response speed, sales visibility, and lead handling while keeping costs low.
 
 ---
 
 # Business Problem
 
-The business needed a simple and affordable way to alert sales when a new website lead was received.
+The business needed a simple and budget-friendly way to alert the sales team whenever a new website lead was received.
 
-Manual checking caused:
+The previous manual process created several issues:
 
-- slow responses
-- missed opportunities
-- poor visibility
-- inconsistent follow-up
+- slow response times  
+- missed opportunities  
+- poor visibility into new leads  
+- inconsistent follow-up  
+- unnecessary manual checking
 
 ---
 
 # My Role
 
-Business Analyst
+**Business Analyst**
 
 I analyzed the workflow and documented:
 
-- Use Case
-- Basic Flow
-- Alternate Flows
-- Exception Flows
-- Business Rules
-- Functional Requirements
+- Use Case  
+- Basic Flow  
+- Alternate Flows  
+- Exception Flows  
+- Business Rules  
+- Functional Requirements  
 - Acceptance Criteria
 
 ---
 
 # Systems Used
 
-- Website Form
-- Airtable
-- Google Sheets
-- Google Apps Script
+- Website Contact Form  
+- Airtable  
+- Google Sheets  
+- Google Apps Script  
 - Gmail / Email
 
 ---
@@ -68,23 +69,20 @@ I analyzed the workflow and documented:
 
 # Workflow Diagram
 
-![Workflow](images/workflow-diagram.png)
+![Workflow](images/workflow.png)
 
 ---
 
 # Screenshots
 
-## Website Form
-![Website Form](images/website-form.png)
+## Website Contact Form
+![Contact Form](images/contact_form.png)
 
 ## Airtable Lead Database
-![Airtable](images/airtable-database.png)
+![Airtable Table](images/airtable_table.png)
 
-## Google Sheet Lead Queue
-![Google Sheet](images/google-sheet.png)
-
-## Apps Script Logic
-![Apps Script](images/app-script.png)
+## Google Sheet + Apps Script
+![Google Sheet and Apps Script](images/google_sheet_and_appscript.png)
 
 ---
 
@@ -237,12 +235,12 @@ Customer submits the website contact form.
 
 # Skills Demonstrated
 
-- Business Analysis
-- Use Cases
-- Workflow Documentation
-- Process Improvement
-- Low-Code Automation
-- Requirements Gathering
+- Business Analysis  
+- Use Cases  
+- Workflow Documentation  
+- Process Improvement  
+- Low-Code Automation  
+- Requirements Gathering  
 - Stakeholder Thinking
 
 ---
