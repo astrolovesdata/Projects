@@ -29,22 +29,27 @@ Welcome to my data analytics portfolio. I use data to understand business proble
 
 ## Projects
 
+### Business Analysis & Process Automation
+
+* [Low-Budget Lead Alert Automation Use Case](./low-budget-lead-alert-automation-use-case)  
+  Documented a low-cost lead notification workflow using website forms, Airtable, Google Sheets, and Apps Script. Includes use case flows, business rules, requirements, and exception handling to improve sales response speed.
+
 ### SQL & Data Modeling
 
-* [Appointment Database Project (ERD + SQL)](./appointment_database)
+* [Appointment Database Project (ERD + SQL)](./appointment_database)  
   Designed a relational database and used SQL to analyze appointments, customer activity, and revenue.
 
 ### Data Cleaning
 
-* [Nashville Housing Data Cleaning](./TN_Housing)
+* [Nashville Housing Data Cleaning](./TN_Housing)  
   Cleaned and standardized housing data, handling duplicates, missing values, and formatting issues.
 
 ### Data Analysis
 
-* [COVID Data Analysis](./covid_project)
+* [COVID Data Analysis](./covid_project)  
   Analyzed global infection and mortality trends using SQL and Tableau dashboards.
 
-* [Toy Store Sales Analysis](./toy_shop)
+* [Toy Store Sales Analysis](./toy_shop)  
   Evaluated revenue, conversion rates, and customer behavior to identify growth opportunities.
 
 ---
