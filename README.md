@@ -2,7 +2,7 @@
 
 **Data Analyst | SQL • Data Modeling • Business Insights**
 
-💡 Portfolio focused on SQL, data modeling, and business-driven analysis.
+Portfolio focused on SQL, data modeling, and business-driven analysis.
 
 Focused on solving business problems through data analysis, process improvement, and clear communication of insights.
 
@@ -10,7 +10,7 @@ Welcome to my data analytics portfolio. I use data to understand business proble
 
 ---
 
-## 🧠 Core Skills
+## Core Skills
 
 * SQL (data analysis, aggregation, joins, window functions)
 * Python (pandas, data transformation)
@@ -18,7 +18,7 @@ Welcome to my data analytics portfolio. I use data to understand business proble
 
 ---
 
-## 🚀 Key Results
+## Key Results
 
 * Improved data quality by cleaning and standardizing real-world datasets (Nashville Housing)
 * Designed relational database models and performed multi-table SQL analysis (Appointment Database)
@@ -27,29 +27,29 @@ Welcome to my data analytics portfolio. I use data to understand business proble
 
 ---
 
-## 📂 Projects
+## Projects
 
-### 📌 SQL & Data Modeling
+### SQL & Data Modeling
 
-* [📊 Appointment Database Project (ERD + SQL)](./appointment_database)
+* [Appointment Database Project (ERD + SQL)](./appointment_database)
   Designed a relational database and used SQL to analyze appointments, customer activity, and revenue.
 
-### 📌 Data Cleaning
+### Data Cleaning
 
-* [🏠 Nashville Housing Data Cleaning](./TN_Housing)
+* [Nashville Housing Data Cleaning](./TN_Housing)
   Cleaned and standardized housing data, handling duplicates, missing values, and formatting issues.
 
-### 📌 Data Analysis
+### Data Analysis
 
-* [🦠 COVID Data Analysis](./covid_project)
+* [COVID Data Analysis](./covid_project)
   Analyzed global infection and mortality trends using SQL and Tableau dashboards.
 
-* [🧸 Toy Store Sales Analysis](./toy_shop)
+* [Toy Store Sales Analysis](./toy_shop)
   Evaluated revenue, conversion rates, and customer behavior to identify growth opportunities.
 
 ---
 
-## 🛠 Tools Used
+## Tools Used
 
 * SQL (MySQL, SQLite)
 * Python (pandas, matplotlib)
@@ -58,7 +58,7 @@ Welcome to my data analytics portfolio. I use data to understand business proble
 
 ---
 
-## 📬 Contact
+## Contact
 
 * Email: [fonzogu@protonmail.com](mailto:fonzogu@protonmail.com)
 * LinkedIn: [linkedin.com/in/gutierrezalfonso](https://www.linkedin.com/in/gutierrezalfonso)
