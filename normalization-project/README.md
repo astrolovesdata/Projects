@@ -199,3 +199,11 @@ GROUP BY o.OrderID, c.CustomerName;
 3. **Redundancy** – Duplicate data stored unnecessarily in a database.  
 4. **Partial Dependency** – A non-key attribute depends on only part of a composite primary key.  
 5. **Transitive Dependency** – A non-key attribute depends on another non-key attribute instead of depending directly on the primary key.
+
+---
+
+## Author
+
+**Alfonso Gutierrez**
+
+Data Analytics | SQL | Business Intelligence
