@@ -1,12 +1,12 @@
-# 📊 Appointment Booking Database Project (ERD + SQL)
-## 🚀 Key Results
+# Appointment Booking Database Project (ERD + SQL)
+## Key Results
 
 - Designed a relational database using an Entity Relationship Diagram (ERD) to model business operations
 - Implemented a multi-table schema in SQL with primary and foreign key relationships
 - Analyzed customer activity, service demand, and staff workload using JOINs and aggregations
 - Calculated revenue and booking trends to support business decision-making
 
-## 📌 Project Overview
+## Project Overview
 
 This project demonstrates how to design and implement a small relational database for an appointment-based business.
 
@@ -24,7 +24,7 @@ This project is designed as both:
 
 ---
 
-## 🧰 Tools Used
+## Tools Used
 
 * **MySQL** – database creation and querying
 * **Lucidchart** – ERD (data model) design
@@ -33,7 +33,7 @@ This project is designed as both:
 
 ---
 
-## 🏢 Business Scenario
+## Business Scenario
 
 A small service-based business needs a system to track:
 
@@ -51,7 +51,7 @@ The goal is to organize data efficiently and enable insights such as:
 
 ---
 
-## 🧱 Data Model (ERD)
+## Data Model (ERD)
 
 ![ERD](ERD_appointment_project.png)
 
@@ -149,7 +149,7 @@ Also included in the SQL file.
 
 ---
 
-## 📂 Project Files
+## Project Files
 
 ```
 appointment_project.sql
@@ -163,7 +163,7 @@ README.md
 
 ---
 
-## 🔍 Key SQL Concepts Demonstrated
+## Key SQL Concepts Demonstrated
 
 * CREATE DATABASE / CREATE TABLE
 * Primary Keys and Foreign Keys
@@ -204,7 +204,7 @@ Shows trends in appointment volume.
 
 ---
 
-## 💡 Key Insights (Example)
+## Key Insights (Example)
 
 * Some customers book multiple appointments → repeat business
 * Certain services generate higher revenue despite fewer bookings
@@ -213,7 +213,7 @@ Shows trends in appointment volume.
 
 ---
 
-## 🧠 Skills Demonstrated
+## Skills Demonstrated
 
 * Data modeling using ERD
 * Translating business requirements into database design
@@ -224,13 +224,13 @@ Shows trends in appointment volume.
 
 ---
 
-## 🎯 How to Explain This Project (Interview Version)
+## How to Explain This Project (Interview Version)
 
 "I designed a relational database for an appointment-based business by first creating an ERD in Lucidchart to define the structure and relationships. I then implemented the schema in MySQL, loaded sample data, and wrote SQL queries to analyze customer activity, service demand, staff workload, and revenue."
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 
 * Add more data for deeper analysis
 * Create dashboards in Power BI or Tableau
@@ -240,7 +240,7 @@ Shows trends in appointment volume.
 
 ---
 
-## 📘 Learning Value
+## Learning Value
 
 This project is ideal for:
 
