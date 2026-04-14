@@ -12,9 +12,13 @@ Welcome to my data analytics portfolio. I use data to understand business proble
 
 ## Core Skills
 
-* SQL (data analysis, aggregation, joins, window functions)
-* Python (pandas, data transformation)
-* Tableau (dashboard creation and storytelling)
+* SQL (joins, aggregations, window functions, business analysis)
+* Data Visualization (Tableau, dashboard storytelling, KPI reporting)
+* Business Analysis (use cases, requirements gathering, process mapping)
+* Process Improvement (workflow optimization, root cause thinking)
+* Automation Tools (Airtable, Google Sheets, Apps Script, Fillout)
+* Data Modeling (ERDs, relational design, normalization)
+* Documentation & Communication (README files, stakeholder-ready summaries)
 
 ---
 
@@ -22,8 +26,10 @@ Welcome to my data analytics portfolio. I use data to understand business proble
 
 * Improved data quality by cleaning and standardizing real-world datasets (Nashville Housing)
 * Designed relational database models and performed multi-table SQL analysis (Appointment Database)
-* Analyzed datasets to identify trends in revenue, conversion, and customer behavior
-* Built dashboards to communicate insights clearly and support decision-making
+* Analyzed trends in revenue, conversion, and customer behavior to support business decisions (Toy Store)
+* Built dashboards to communicate insights clearly and support decision-making (COVID Analysis)
+* Documented a low-budget lead alert automation using Airtable, Google Sheets, and Apps Script to improve sales response speed
+* Created business-focused portfolio projects that combine analytics, process improvement, and stakeholder communication
 
 ---
 
