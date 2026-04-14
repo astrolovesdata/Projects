@@ -297,3 +297,11 @@ Example: send email alert.
 How we confirm the solution works.
 
 Example: row is marked after email send.
+
+---
+
+## Author
+
+**Alfonso Gutierrez**
+
+Data Analytics | SQL | Business Intelligence
