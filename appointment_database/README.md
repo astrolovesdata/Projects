@@ -250,6 +250,8 @@ This project is ideal for:
 
 It shows how **data modeling and SQL work together** to solve real business problems.
 
+---
+
 ## Author
 
 **Alfonso Gutierrez**
