@@ -56,10 +56,23 @@ Welcome to my data analytics portfolio. I use data to understand business proble
 
 ## Tools Used
 
+### Data Analysis
 * SQL (MySQL, SQLite)
-* Python (pandas, matplotlib)
 * Tableau
-* Git & GitHub
+
+### Business Analysis & Process Design
+* Lucidchart
+* Markdown
+
+### Automation & Workflow Tools
+* Airtable
+* Google Sheets
+* Google Apps Script
+* Fillout
+
+### Portfolio & Documentation
+* GitHub
+* VS Code
 
 ---
 
